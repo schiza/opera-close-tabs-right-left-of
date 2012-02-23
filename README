@@ -1,0 +1,13 @@
+Closes tabs right/left of current (focused) tab
+
+The extension provides functionality of closing tabs that are right (or left) of current (focused) tab, that is known from Chrome browser.
+
+Usage: click the extension button on the toolbar, to close all tabs that are right/left of the current tab. To choose which side will be closed (right or left) go to the preferences page and choose one option.
+
+It's not fancy, nor sophisticated - just to work.
+
+Known limitations:
+- you can't have both (left and right) buttons - Opera extensions are limited to 1 button only (I could make a popup with 2 buttons, but that's 2 clicks away, not just one..)
+- it won't work when current tab is speed dial (because of Opera extension API, I'd have to make a workaround - not worth it); also, it won't close those kind of tabs
+
+After installing, restart your browser (so it would work with tabs opened before installing).
