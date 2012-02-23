@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget xmlns="http://www.w3.org/ns/widgets" version="0.2.1" id="https://addons.opera.com/addons/extensions/details/close-tabs-right-of-current/">
+  <name>Close tabs right/left of current</name>
+  <icon src="icons/icon_64.png"/>
+  <license>Copyright 2012 schizunio
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</license>
+  <author href="mailto:schizunio@gmail.com">schizunio</author>
+  <update-description href="https://extension-updates.opera.com/api/w3c-wd1/update/9f7e49fa-906c-4ebe-8eb1-c3783a7a9693/"/>
+  <description xml:lang="en">Closes tabs right/left of current (focused) tab</description>
+</widget>
