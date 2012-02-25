@@ -1,8 +1,8 @@
-var leftButton, rightButton, extension = opera.extension, tabs = extension.tabs, option = widget.preferences.option;
+var leftButton, rightButton, extension = opera.extension, tabs = extension.tabs, option = widget.preferences.option, includeSelf = parseInt(widget.preferences.includeSelf);
 
-function getTabTitle(tab) { return tab.title; }
-
-function closeTab(tab) { tabs.close(tab); }
+function closeTab(tab) {
+  tabs.close(tab);
+}
 
 function isFocused(tab) {
   return tab.focused;
@@ -10,12 +10,12 @@ function isFocused(tab) {
 
 function closeTabsRightOfCurrent(current_tabs, current_tab) {
   var i = current_tabs.map(isFocused).indexOf(true);
-  current_tabs.slice(i+1).forEach(closeTab);
+  current_tabs.slice(i + 1 - includeSelf).forEach(closeTab);
 }
 
 function closeTabsLeftOfCurrent(current_tabs, current_tab) {
   var i = current_tabs.map(isFocused).indexOf(true);
-  current_tabs.slice(0, i).forEach(closeTab);
+  current_tabs.slice(0, i + includeSelf).forEach(closeTab);
 }
 
 function setupConnection() {
@@ -66,8 +66,11 @@ window.addEventListener('load', function() {
 
 			  setupConnection();
 
-			  if (widget.preferences.option == undefined)
-			    widget.preferences.option = '2'; //default: right
+			  if (option == undefined)
+			    option = '2'; //default: right
+
+			  if (includeSelf == undefined)
+			    includeSelf = 0; //default: no
 
 			  resetButtons();
 

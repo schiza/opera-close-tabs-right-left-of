@@ -19,8 +19,11 @@
 	  <option value="0">None</option>
 	  <option value="1">Left</option>
 	  <option value="2">Right</option>
-	</select>
+	</select>	
       </p>
+      <p>
+	<label for="includeSelf">Close also current (active) tab?</label>
+	<input id="includeSelf" type="checkbox" value="1">
     </fieldset>
     <p>
       <h2>Remember - you need to restart opera for extension to work with already opened tabs!</h2>
@@ -34,6 +37,7 @@
     <script>
       
       var select = document.getElementById('option');
+      var checkbox = document.getElementById('includeSelf');
       var source = false;
 
       opera.extension.onmessage = function(event){
@@ -43,12 +47,22 @@
       if ( widget.preferences.option ) {
         select.value = widget.preferences.option;
       }
+
+      if ( widget.preferences.includeSelf) {
+        checkbox.checked = (widget.preferences.includeSelf == 1 ? true : false);
+      }
       
       select.addEventListener('change', function() {
         widget.preferences.option = this.value;
         if (source)
           source.postMessage("reset");
       }, false );
+
+      checkbox.addEventListener('change', function() {
+        widget.preferences.includeSelf = (this.checked ? 1 : 0);
+        if (source)
+          source.postMessage("reset");
+      }, false );      
       
     </script>
   </body>
