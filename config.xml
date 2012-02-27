@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget xmlns="http://www.w3.org/ns/widgets" version="0.2.2" id="https://addons.opera.com/addons/extensions/details/close-tabs-right-of-current/">
+<widget xmlns="http://www.w3.org/ns/widgets" version="0.2.3" id="https://addons.opera.com/addons/extensions/details/close-tabs-right-of-current/">
   <name>Close tabs right of current</name>
   <icon src="icons/icon_64.png"/>
   <update-description href="https://extension-updates.opera.com/api/w3c-wd1/update/4c573693-d5c2-4493-a4cd-edd1fce01541/"/>
