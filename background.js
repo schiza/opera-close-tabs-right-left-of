@@ -1,21 +1,29 @@
-var leftButton, rightButton, extension = opera.extension, tabs = extension.tabs;
+var leftButton, rightButton, extension = opera.extension;
+var tabs = extension.tabs.getAll ? extension.tabs.getAll() : extension.tabs;
+
+// for compatibility with Opera 11.x
+function getFocusedWindow() {
+  return extension.windows.getFocused ? extension.windows.getFocused() : extension.windows.getLastFocused();
+}
 
 function closeTab(tab) {
-  tabs.close(tab);
+  tabs.close ? tabs.close(tab) : tab.close();
 }
 
 function isFocused(tab) {
-  return tab.focused;
+  return tab.focused || tab.selected;
 }
 
 function closeTabsRightOfCurrent(current_tabs) {
-  var i = current_tabs.map(isFocused).indexOf(true);
-  current_tabs.slice(i + 1 - parseInt(widget.preferences.includeSelf)).forEach(closeTab);
+  var current_tabs_arr = current_tabs.map ? current_tabs : current_tabs.getAll();
+  var i = current_tabs_arr.map(isFocused).indexOf(true);
+  current_tabs_arr.slice(i + 1 - parseInt(widget.preferences.includeSelf)).forEach(closeTab);
 }
 
 function closeTabsLeftOfCurrent(current_tabs) {
-  var i = current_tabs.map(isFocused).indexOf(true);
-  current_tabs.slice(0, i + parseInt(widget.preferences.includeSelf)).forEach(closeTab);
+  var current_tabs_arr = current_tabs.map ? current_tabs : current_tabs.getAll();
+  var i = current_tabs_arr.map(isFocused).indexOf(true);
+  current_tabs_arr.slice(0, i + parseInt(widget.preferences.includeSelf)).forEach(closeTab);
 }
 
 function setupConnection() {
@@ -58,10 +66,10 @@ window.addEventListener('load', function() {
 			  rightButton = opera.contexts.toolbar.createItem(rightProperties);
 
 			  leftButton.onclick = function() {
-			    closeTabsLeftOfCurrent(extension.windows.getFocused().tabs);
+			    closeTabsLeftOfCurrent(getFocusedWindow().tabs);
 			  };
 			  rightButton.onclick = function() {
-			    closeTabsRightOfCurrent(extension.windows.getFocused().tabs);
+			    closeTabsRightOfCurrent(getFocusedWindow().tabs);
 			  };
 
 			  setupConnection();
